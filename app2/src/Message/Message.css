@@ -1,0 +1,9 @@
+.mediaMessage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: fit-content;
+    height: 150px;
+    min-width: 40%;
+}
