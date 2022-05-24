@@ -1,7 +1,7 @@
 function Contacts(props) {
 
     let timeStr = ``;
-     let lastMessage = "";
+    let lastMessage = "";
 
     if (props.contact.last !== null) {
         const date = new Date(props.contact.lastdate);
@@ -17,10 +17,10 @@ function Contacts(props) {
 
     }
     function openChatWindow() {
-        props.setCurrentWindow({       
+        props.setCurrentWindow({
             contact: props.contact,
             setContactsList: props.setContactsList,
-            contactsList: props.contactsList,        
+            contactsList: props.contactsList,
         });
     }
 

@@ -1,7 +1,5 @@
 import openningWindow from './ChatPageImage.png'
-import { getUserImage, getUserNickname } from "../DataBase/DataBase";
 import MessageContent from "../MessageContent/MessageContent";
-import MessageFooter from "../MessageFooter/MessageFooter";
 
 function MessageContainer(props) {
 
@@ -21,10 +19,8 @@ function MessageContainer(props) {
                     </div>
                 </div>
             </div>
-            <MessageContent currentChat={props.currentWindow} contactsList={props.contactsList}  loggedInUser={props.loggedInUser} />
-            <MessageFooter currentChat={props.currentWindow} />
+            <MessageContent currentWindow={props.currentWindow} loggedInUser={props.loggedInUser} />
         </div>
     );
 }
-
 export default MessageContainer;

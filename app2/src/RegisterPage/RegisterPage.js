@@ -1,70 +1,23 @@
 import './RegisterPage.css';
-import { useEffect, useState } from 'react';
 import React from 'react';
-import { addUserToData, validateUser, userDataBase } from '../DataBase/DataBase';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export function RegisterPage(params) {
 
-    // const [userData, setUserData] = useState([]);
-    // useEffect(async () => {
-    //     const res = await fetch('http://localhost:7000/api/Users');
-    //     //const data = await res.json();
-    // },[])
-
-    // let serverAddress = "localhost:7000";
-    // var myServer = "localhost";
-    // var myPort = "7000";
-    
-    // async function postData(usernameOfUser, passwordOfUser, server) {
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ "username": usernameOfUser, "password": passwordOfUser, "server": myServer + ":" + myPort })
-    //     };
-
-    //     const response = await fetch("http://" + server + "/api/Users", requestOptions);
-    //     return response.ok;
-    // }
-
     var serverAddress = "localhost:7000";
-     async function postData(usernameOfUser, passwordOfUser, server){
+    async function postData(usernameOfUser, passwordOfUser, server) {
 
-        try{
-         await axios.post("http://localhost:7000/api/Users",
-          {Username:usernameOfUser, Password:passwordOfUser, ServerAddress:server})
-          alert("You have successfully registered! go back to login page");
+        try {
+            await axios.post("http://localhost:7000/api/Users",
+                { Username: usernameOfUser, Password: passwordOfUser, Server: server })
+            alert("You have successfully registered! go back to login page");
         }
 
         catch {
             alert("The user is already exist!");
         }
-     } 
-
-
-
-
-
-
-
-
-    // async function postData(url = '', data = {}) {
-    //     // Default options are marked with *
-    //     const response = await fetch(url, {
-    //       method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    //       mode: 'no-cors',
-    //       headers: {
-    //         'Content-Type': 'application/json'
-
-    //       },
-    //       body: JSON.stringify(data) // body data type must match "Content-Type" header
-    //     });
-    //     return response.json(); // parses JSON response into native JavaScript objects
-    //   }
-
+    }
 
     function validatePassword(e) {
         e.preventDefault();
@@ -90,25 +43,7 @@ export function RegisterPage(params) {
         }
 
         else {
-
-            postData(username,password, serverAddress);
-
-
-
-
-
-            // postData({usernameOfUser: username , passwordOfUser: password})
-            // .then (data =>{
-            //     console.log(data.json())});
-
-            // if (userDataBase.has(username)) {
-            //     if (validateUser(username, password)) {
-            //         alert("The user is already exist!");
-            //         return;
-            //     }
-            // }
-            // addUserToData(username, password);
-            // alert("You have successfully registered! go back to login page");
+            postData(username, password, serverAddress);
         }
         return;
     }

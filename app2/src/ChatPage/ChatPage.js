@@ -2,7 +2,6 @@ import './ChatPage.css';
 import { useEffect, useRef, useState } from 'react';
 import React from 'react';
 import Contacts from '../Contacts/Contacts';
-import { addChat, contactsDataBase, getUserImage, getUserNickname, userDataBase, addToContactsDataBase } from '../DataBase/DataBase';
 import { useLocation } from 'react-router-dom';
 import MessageContainer from '../MessageContainer/MessageContainer';
 import axios from 'axios';
@@ -13,35 +12,7 @@ export function ChatPage() {
 
     const [currentWindow, setCurrentWindow] = useState(null);
     const [contactsList, setContactsList] = useState(null);
-    /*
-        useEffect(async() => {
-            const res = await fetch("http://localhost:7000/api/Contacts?username="+location.state.username);
-            const data =await res.json();
-            setContactsList(data);
-        }, []);
-        
-    /*
-        useEffect(() => {
-            async function fetchData() {
-              // You can await here
-              const response = await MyAPI.getData(someId);
-              // ...
-            }
-            fetchData();
-          }, [someId]); // Or [] if effect doesn't need props or state
-      
 
-*/
-/*
-    function contactsDB() {
-        axios.get("http://localhost:7000/api/Contacts?username=" + location.state.username)
-            .then(res => {
-                const persons = res.data;
-                setContactsList({ persons });
-            })
-    }
-    
- */
        useEffect(() => {
             getContacts(location.state.username)
                 .then((contactsList) => {
@@ -49,7 +20,6 @@ export function ChatPage() {
                 }) 
               
         }, []);
-   
 
     async function postContact(usernameOfUser, nameOfContact, nicknameOfContact, server) {
         try {
@@ -60,10 +30,10 @@ export function ChatPage() {
             return;
         }
         catch (error) {
-            if (error === 404) {
+            if (error.message === "Request failed with status code 404") {
                 alert("user doesn't exist");
             }
-            else if (error === 400) {
+            else if (error.message === "Request failed with status code 400"){
                 alert("You can not open a chat with yourself!");
             }
         }
@@ -138,15 +108,13 @@ export function ChatPage() {
                         </div>
                     </div>
                     <div className="sidebar-chats">
-                        {contactsList === null ? <h1>loading</h1> : contactsList.map((contact, key) => <Contacts
-                            contact={contact}
-                            nickname={contact.username}
+                        {contactsList === null ? <h4> </h4> : contactsList.map((contact, key) => <Contacts
+                            contact={contact}       
                             setCurrentWindow={setCurrentWindow}
-                            contactUsername={contact.username}
-                            contactsList={contactsList}
-                            setContactsList={setContactsList}
-                            messages={contact.messages}
                             loggedInUser={location.state.username}
+                            setContactsList ={setContactsList}
+                            contactsList = {contactsList}
+                            
                             key={key} />
                         )}
                     </div>

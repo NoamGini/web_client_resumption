@@ -1,30 +1,30 @@
 import './LoginPage.css';
 import LoginLogo from './LoginPageImage.png'
 import React from 'react';
-import { validateUser, userDataBase } from '../DataBase/DataBase';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export function LoginPage() {
 
 
-    async function getData(usernameOfUser, passwordOfUser){
+    async function getData(usernameOfUser, passwordOfUser) {
 
-        try{
-         await axios.get(
-             "http://localhost:7000/api/Users?username="+ usernameOfUser + "&password=" + passwordOfUser,
-          {Username:usernameOfUser, Password:passwordOfUser})
-          alert("SignIn successfully");
+        try {
+            var response = await axios.get(
+                "http://localhost:7000/api/Users?username=" + usernameOfUser + "&password=" + passwordOfUser,
+                { Username: usernameOfUser, Password: passwordOfUser })
+            alert("SignIn successfully");
+            return response.data;
         }
 
-        catch {
-            alert("user doesn't exist");
+        catch(error) {
+            return error
         }
-     } 
+    }
 
     let navigate = useNavigate()
 
-    function validatefields() {
+    async function validatefields() {
         var username = document.getElementById("Username").value;
         var password = document.getElementById("Password").value;
         if (username.length === 0 || password.length === 0) {
@@ -35,26 +35,22 @@ export function LoginPage() {
             alert("Password too short! Please enter 8 characters or more");
             return;
         } else {
-           
-                getData(username,password);
-              navigate("ChatPage", { state: userDataBase.get(username) });
-            
-            // if (userDataBase.has(username)) {
-            //     if (validateUser(username, password)) {
-            //         alert("SignIn successfully");
-            //         navigate("ChatPage", { state: userDataBase.get(username) });
-            //         return;
-            //     }
 
-            // }
-            // alert("user doesn't exist");
-            // return;
+            var currentUser = await getData(username, password);
+            if (currentUser.message !== "Request failed with status code 400" ||
+                currentUser.message !== "Request failed with status code 404") {
+                navigate("ChatPage", { state: currentUser });
+                return;
+            }
+            alert("user doesn't exist");
+            navigate("/", { state: currentUser });
+            return;
         }
     }
 
     return (
         <div className="container">
-            <div className="image-container"><img src={LoginLogo} className="logo-img"></img></div>
+            <div className="image-container"><img src={LoginLogo} alt="" className="logo-img"></img></div>
             <div className="outterBlock">
                 <div className="block">
                     <div className="form-floating very-cool-margin">

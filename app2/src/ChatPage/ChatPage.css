@@ -132,6 +132,9 @@
 }
 
 /* Message Content*/
+.messageSide{
+    height: calc(100% - 50px);
+}
 
 .message-container {
     display: flex;
@@ -219,7 +222,7 @@ p {
     background-position: center;
     padding: 0px 20px;
     overflow-y: scroll;
-    height: calc(100% - 110px);
+    height: calc(100% - 60px);
 }
 
 .chat-message {
