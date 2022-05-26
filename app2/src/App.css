@@ -1,0 +1,8 @@
+body{
+  background-image: url(wallpaper.jpg);
+  background-size: auto;
+  overflow: clip;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
