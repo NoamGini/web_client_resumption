@@ -6,7 +6,9 @@ function Contacts(props) {
     if (props.contact.last !== null) {
         const date = new Date(props.contact.lastdate);
         const [hour, minutes] = [date.getHours(), date.getMinutes()];
-        timeStr = `${String(hour).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+        const [day, month, year] = [date.getDate(), date.getMonth(), date.getFullYear()];
+
+        timeStr = `${day}/${month}/${year} | ${String(hour).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 
         if (props.contact.last.length > 20) {
             lastMessage = (props.contact.last).slice(0, 19) + "...";
