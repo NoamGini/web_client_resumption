@@ -48,6 +48,10 @@ This site uses:
   ```bash
   git clone https://github.com/noaziv55/web_client.git
   ```
+* **Important note:** With the approval of the teaching staff, **please add the letter "s" at the end of the word "invitation"** <br />
+ in the `.\app2\src\ChatPage\ChatPage.js` file in line `64` when calling the invitations server operation. <br />
+ The call to the path in line `64` should look like this:
+ ![image](https://user-images.githubusercontent.com/92301625/175650090-b155fe10-e61e-49ff-934c-7c9e38eac6da.png)
 * Install the requied dependencies by using: 
    ```bash
    npm install
