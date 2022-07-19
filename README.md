@@ -46,7 +46,7 @@ This site uses:
 * Download Node.js : `https://nodejs.org/en/` which includes NPM package manager for Node.js.
 * Clone the repo: 
   ```bash
-  git clone https://github.com/noaziv55/web_client.git
+  git clone https://github.com/NoamGini/web_client_resumption.git
   ```
 * **Important note:** With the approval of the teaching staff, **please add the letter "s" at the end of the word "invitation"** <br />
  in the `.\app2\src\ChatPage\ChatPage.js` file in line `64` when calling the invitations server operation. <br />
